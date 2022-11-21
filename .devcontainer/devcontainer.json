@@ -1,0 +1,32 @@
+{
+  "name": "Flashcards GSheet Go",
+  "dockerFile": "Dockerfile",
+  // "appPort": 8000,
+  "extensions": [
+    "golang.go",
+    "k--kato.intellij-idea-keybindings", // Intellij IDEA key bindings
+    "eamodio.gitlens", // IDE Git information
+    "davidanson.vscode-markdownlint",
+    "shardulm94.trailing-spaces",
+    "IBM.output-colorizer",
+    "Gruntfuggly.todo-tree", // Highlights TODO comments
+    "stkb.rewrap", // rewrap comments after n characters on one line
+    "vscode-icons-team.vscode-icons", // Better file extension icons
+    "mohsen1.prettify-json", // Prettify JSON data
+    "IBM.output-colorizer", // Colorize your output/test logs
+    "ms-azuretools.vscode-docker"
+  ],
+  "settings": {
+    "go.useLanguageServer": true,
+    "go.lintTool": "golangci-lint",
+    "go.lintOnSave": "package",
+    "go.testTimeout": "10s",
+    "editor.formatOnSave": true
+  },
+  "postCreateCommand": "go mod download",
+  "runArgs": [
+    "--cap-add=SYS_PTRACE",
+    "--security-opt",
+    "seccomp=unconfined"
+  ]
+}
