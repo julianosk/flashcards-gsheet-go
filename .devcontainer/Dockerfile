@@ -103,15 +103,10 @@ RUN apt-get update -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
 
+RUN git config --global gpg.program /usr/bin/gpg
+
 ENV GOPATH=/go
 ENV PATH=$GOPATH/bin:/usr/local/go/bin:$PATH
-ARG GOPLS_VERSION=latest
-ARG DELVE_VERSION=v1.6.1
-ARG GOMODIFYTAGS_VERSION=v1.13.0
-ARG GOPLAY_VERSION=v1.0.0
-ARG GOTESTS_VERSION=v1.5.3
-ARG MOCK_VERSION=v1.5.0
-ARG MOCKERY_VERSION=v2.3.0
 
 RUN mkdir -p ${GOPATH}/src/github.com && \
     chown -R ${USER_UID}:${USER_GID} ${GOPATH}
@@ -119,7 +114,7 @@ RUN mkdir -p ${GOPATH}/src/github.com && \
 USER ${USERNAME}
 
 COPY --from=golangci-lint /usr/bin/golangci-lint ${GOPATH}/bin
-RUN go install -v golang.org/x/tools/gopls@${GOPLS_VERSION} 2>&1
+RUN go install golang.org/x/tools/gopls@latest 2>&1
 # Base Go tools needed for VS code Go extension
 RUN go install golang.org/x/tools/cmd/guru@latest
 RUN go install golang.org/x/tools/cmd/gorename@latest
