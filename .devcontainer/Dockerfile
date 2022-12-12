@@ -45,6 +45,7 @@ RUN addgroup --gid $USER_GID $USERNAME && \
 # Setup shell for root and ${USERNAME}
 ENTRYPOINT [ "/bin/zsh" ]
 
+
 ENV EDITOR=nano \
     LANG=en_US.UTF-8 \
     # MacOS compatibility
@@ -75,6 +76,12 @@ RUN git clone --single-branch --depth 1 https://github.com/robbyrussell/oh-my-zs
     chmod -R 700 /home/${USERNAME} && \
     cp -r /home/${USERNAME}/.oh-my-zsh /root/.oh-my-zsh && \
     chown -R root:root /root/.oh-my-zsh
+
+ENV ZSH=/home/${USERNAME}/.oh-my-zsh
+
+RUN git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH/plugins/zsh-autosuggestions
+
+RUN git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH/plugins/zsh-syntax-highlighting
 
 # Docker
 COPY --from=docker-cli --chown=${USER_UID}:${USER_GID} /usr/local/bin/docker /usr/local/bin/docker
