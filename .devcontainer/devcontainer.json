@@ -8,13 +8,13 @@
     "eamodio.gitlens", // IDE Git information
     "davidanson.vscode-markdownlint",
     "shardulm94.trailing-spaces",
-    "IBM.output-colorizer",
     "Gruntfuggly.todo-tree", // Highlights TODO comments
     "stkb.rewrap", // rewrap comments after n characters on one line
     "vscode-icons-team.vscode-icons", // Better file extension icons
     "mohsen1.prettify-json", // Prettify JSON data
     "IBM.output-colorizer", // Colorize your output/test logs
-    "ms-azuretools.vscode-docker"
+    "ms-azuretools.vscode-docker",
+    "WallabyJs.console-ninja"
   ],
   "settings": {
     "go.useLanguageServer": true,

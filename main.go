@@ -1,9 +1,10 @@
 package main
 
-import (
-	"github.com/gin-gonic/gin"
-)
+import "fmt"
+
+// "github.com/gin-gonic/gin"
 
 func main() {
-	gin.SetMode(setting.ServerSetting.RunMode)
+	// gin.SetMode(setting.ServerSetting.RunMode)
+	fmt.Println("testing")
 }
